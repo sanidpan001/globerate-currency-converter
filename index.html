@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GlobeRate — Currency Converter with Editable Rates</title>
+<meta name="description" content="GlobeRate is a free currency converter with editable indicative rates, quick amount chips, a multi-currency results grid, swap and copy. Convert 15 major currencies instantly.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:Inter,system-ui,sans-serif}h1,h2,.brand{font-family:Archivo,Inter,sans-serif}.chip.active{background:#F59E0B;color:#0B1F4A}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is GlobeRate free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. GlobeRate is completely free with unlimited usage. There is no signup, no paywall and no watermark on any result. Open the page, type an amount and convert as many times as you like."}},{"@type":"Question","name":"Are the exchange rates in GlobeRate live rates?","acceptedAnswer":{"@type":"Answer","text":"No. GlobeRate uses built-in indicative rates so the tool works fully offline. Those rates are a helpful starting point for estimates, travel budgets and quick comparisons, but they are not live market rates. Always check a live source or your bank before making a payment, booking or financial decision."}},{"@type":"Question","name":"Can I edit the exchange rates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Open the rates editor below the converter, change any rate per one US dollar, and every conversion updates instantly. This is useful when your bank, card network or money transfer service quotes you a specific rate and you want to see the real cost with that rate included."}},{"@type":"Question","name":"How does the multi-currency grid work?","acceptedAnswer":{"@type":"Answer","text":"The grid converts your amount into fifteen major currencies at once using the same rates. It is ideal for comparing a price across countries, planning a multi-country trip or checking what a salary, invoice or product price looks like in several markets without converting one by one."}},{"@type":"Question","name":"Why do yen and won show no decimal places?","acceptedAnswer":{"@type":"Answer","text":"Japanese yen and South Korean won are traditionally used without minor units in everyday prices, so GlobeRate formats them with zero decimal places. Most other currencies in the tool are formatted with two decimal places, matching how they are normally quoted."}},{"@type":"Question","name":"Does GlobeRate store or send my data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations happen in your browser on this page. GlobeRate makes no backend calls and does not send your amounts or edited rates to any server. If you close or refresh the page, your edited rates return to the built-in defaults."}}]}</script>
+</head>
+<body id="top" class="bg-[#EEF2F8] text-slate-800 min-h-screen">
+<header class="sticky top-0 z-50 bg-[#0B1F4A] text-white shadow-lg"><div class="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between"><a href="#top" class="brand text-xl font-black tracking-tight">🌐 Globe<span class="text-amber-400">Rate</span></a><nav class="flex gap-2 text-sm font-semibold"><a href="#top" class="px-3 py-2 rounded-lg hover:bg-white/10">Home</a><a href="https://fixoraa.tech" class="px-3 py-2 rounded-lg bg-amber-400 text-[#0B1F4A] hover:bg-amber-300">More Tools</a></nav></div></header>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="mx-auto max-w-6xl px-4 sm:px-6 pb-10">
+<section class="mt-6 text-center"><span class="inline-block bg-amber-400 text-[#0B1F4A] text-xs font-black px-3 py-1.5 rounded-full uppercase tracking-wider">Unlimited Free Usage</span><h1 class="mt-4 text-4xl sm:text-5xl font-black text-[#0B1F4A] leading-tight">Currency Converter</h1><p class="mt-3 text-slate-600 max-w-2xl mx-auto">Convert 15 major currencies in seconds — with rates you can see, edit and trust for planning. No signup, works offline with built-in indicative rates.</p></section>
+<section class="mt-8 bg-[#0B1F4A] rounded-3xl p-5 sm:p-8 shadow-2xl text-white" aria-label="Currency converter console">
+<div class="grid md:grid-cols-[1fr_auto_1fr] gap-4 items-end">
+<div><label for="amount" class="text-xs font-bold uppercase tracking-widest text-amber-300">Amount</label><input id="amount" type="text" inputmode="decimal" value="100" class="mt-2 w-full rounded-xl bg-white text-[#0B1F4A] text-2xl font-black px-4 py-3 outline-none focus:ring-4 ring-amber-400/50"><div class="mt-3 flex flex-wrap gap-2" id="chips"><button type="button" data-chip="10" class="chip px-3 py-1.5 rounded-full bg-white/15 hover:bg-amber-400 hover:text-[#0B1F4A] text-sm font-bold">10</button><button type="button" data-chip="50" class="chip px-3 py-1.5 rounded-full bg-white/15 hover:bg-amber-400 hover:text-[#0B1F4A] text-sm font-bold">50</button><button type="button" data-chip="100" class="chip px-3 py-1.5 rounded-full bg-white/15 hover:bg-amber-400 hover:text-[#0B1F4A] text-sm font-bold">100</button><button type="button" data-chip="500" class="chip px-3 py-1.5 rounded-full bg-white/15 hover:bg-amber-400 hover:text-[#0B1F4A] text-sm font-bold">500</button><button type="button" data-chip="1000" class="chip px-3 py-1.5 rounded-full bg-white/15 hover:bg-amber-400 hover:text-[#0B1F4A] text-sm font-bold">1,000</button><button type="button" data-chip="5000" class="chip px-3 py-1.5 rounded-full bg-white/15 hover:bg-amber-400 hover:text-[#0B1F4A] text-sm font-bold">5,000</button></div></div>
+<div class="flex md:flex-col gap-3 justify-center"><div><label class="text-xs font-bold uppercase tracking-widest text-amber-300">From</label><select id="fromSel" class="mt-2 w-full md:w-44 rounded-xl bg-white text-[#0B1F4A] font-bold px-3 py-3"></select></div><button id="swapBtn" type="button" class="self-center bg-amber-400 text-[#0B1F4A] font-black rounded-full w-11 h-11 text-xl hover:rotate-180 transition-transform" title="Swap currencies" aria-label="Swap currencies">⇅</button><div><label class="text-xs font-bold uppercase tracking-widest text-amber-300">To</label><select id="toSel" class="mt-2 w-full md:w-44 rounded-xl bg-white text-[#0B1F4A] font-bold px-3 py-3"></select></div></div>
+<div class="bg-white/10 rounded-2xl p-5"><p class="text-xs font-bold uppercase tracking-widest text-amber-300">Result</p><p id="result" class="mt-2 text-3xl font-black break-words">—</p><p id="rateLine" class="mt-2 text-sm text-slate-300"></p><div class="mt-4 flex gap-2"><button id="copyBtn" type="button" class="bg-amber-400 text-[#0B1F4A] font-bold px-4 py-2 rounded-lg text-sm">Copy result</button><span id="copyMsg" class="text-sm text-emerald-300 self-center"></span></div></div>
+</div>
+<p id="msg" class="mt-4 text-amber-200 text-sm font-semibold"></p>
+<div class="mt-4 bg-amber-400/15 border border-amber-400/40 rounded-xl px-4 py-3 text-sm text-amber-100">⚠️ <strong>Offline indicative rates:</strong> GlobeRate ships with built-in indicative rates (per 1 USD) so it works without an internet connection. They are estimates for planning only — not live market rates. Edit them below to match any real quote from your bank or provider.</div>
+</section>
+<section class="mt-8"><h2 class="text-xl font-black text-[#0B1F4A]">Your amount in every currency</h2><p class="text-sm text-slate-500 mt-1">Multi-currency results grid — updates live as you type.</p><div id="grid" class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div></section>
+<section class="mt-8 bg-white rounded-3xl border border-slate-200 p-5 sm:p-7 shadow-sm"><div class="flex flex-wrap justify-between gap-3 items-center"><div><h2 class="text-xl font-black text-[#0B1F4A]">Rates editor — per 1 USD</h2><p class="text-sm text-slate-500 mt-1">Change any rate and all conversions update instantly. Invalid or zero rates fall back to the built-in default.</p></div><button id="resetRates" type="button" class="bg-[#0B1F4A] text-white px-4 py-2 rounded-lg text-sm font-bold">Reset to defaults</button></div><div id="ratesGrid" class="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div></section>
+<article id="seo-article" class="mt-10 bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm"><h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-2">What a currency converter actually does</h2>
+<p class="mt-3 leading-relaxed text-slate-700">A currency converter answers a deceptively simple question: how much is this amount worth in a different money system? Behind that question sits an exchange rate, which is simply a price. Just as a kilogram of apples has a price in your local shop, one unit of a currency has a price expressed in another currency. If one US dollar buys 0.92 euros, then a hundred dollars buys ninety-two euros before any fees. GlobeRate takes that basic idea and makes it practical. You type an amount, choose where you are starting from and where you want to end up, and the tool does the division and multiplication for you instantly, using a clear set of built-in indicative rates that you can inspect and edit.</p>
+<p class="mt-3 leading-relaxed text-slate-700">That transparency matters more than most converter websites admit. Many people use a converter once, copy the headline number, and assume that is exactly what they will receive when they pay, travel or transfer money. In reality the number you see on a screen is only the starting point. Banks add margins, card networks use their own daily rates, cash desks charge commissions, and markets move while you are deciding. A good converter therefore does two jobs at once. First, it gives you a fast, honest estimate. Second, it helps you understand how sensitive that estimate is, so you can replace the default rate with the rate you were actually quoted and see the true outcome before you commit any money.</p>
+<h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-8">Understanding exchange rates without the jargon</h2>
+<p class="mt-3 leading-relaxed text-slate-700">Exchange rates are usually quoted as a pair. The first currency is the one you have, and the second is the one you want. GlobeRate stores its built-in rates in a simple, consistent way: each rate tells you how many units of a currency equal one US dollar. That single reference point makes every other conversion easy to derive. To move from euros to pounds, for example, the tool first expresses your amount in dollars and then converts those dollars into pounds. This is called a cross rate, and it is exactly how professional systems relate currencies that are not directly quoted against each other in a simple table.</p>
+<p class="mt-3 leading-relaxed text-slate-700">Rates move because supply and demand move. When investors, businesses, tourists and governments want more of a currency, its price tends to rise. When confidence falls, interest rates change, trade patterns shift or a central bank intervenes, the price can fall. No free online tool can promise you the exact rate a bank will apply at the precise second your payment clears. That is why GlobeRate labels its numbers clearly as indicative and offline. The note is not a weakness of the tool; it is an honest description of what any built-in rate table can and cannot do. Use it for planning, comparison and learning, then confirm the final rate at the moment of a real transaction.</p>
+<h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-8">Why editable rates are the most useful feature on this page</h2>
+<p class="mt-3 leading-relaxed text-slate-700">Most converters lock you into whatever rate their data feed happens to show. GlobeRate takes the opposite approach. If your bank tells you it will convert your money at a specific rate, if a bureau de change displays a board rate in a shop window, or if a client agrees to settle an invoice at a fixed rate written into a contract, you can type that rate straight into the editor and watch every result update. Suddenly the tool stops being a generic reference and becomes a calculator for your actual situation. The gap between a market headline rate and a real quoted rate is often where fees hide, and editing the rate makes that gap visible in plain numbers.</p>
+<p class="mt-3 leading-relaxed text-slate-700">Try a simple experiment. Convert a holiday budget using the default rates, then lower the rate for your destination currency by two or three percent, which is a typical size for a card or cash margin. The difference you see is roughly what convenience can cost on that trip. Sometimes paying that cost is perfectly reasonable for safety, speed or simplicity. The point is not to avoid every fee, because moving money legitimately costs money to operate. The point is to choose with your eyes open, compare options on equal terms, and avoid surprises when a statement arrives weeks later showing a very different number from the one you expected.</p>
+<h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-8">The multi-currency grid: one amount, fifteen answers</h2>
+<p class="mt-3 leading-relaxed text-slate-700">Converting one currency at a time is fine for a single purchase, but modern life rarely stops at one border. A freelancer might invoice clients in dollars, pay for software in euros, save in pounds and take holidays in a fourth country. An online seller might price a product once and need to sense-check that price in a dozen markets. A student comparing universities abroad needs tuition, rent and living costs translated into the money they actually think in. The multi-currency grid on GlobeRate was built for exactly those moments. Enter one amount and you immediately see its equivalent across fifteen major currencies, each formatted the way that currency is normally written, with yen and won shown without decimal places.</p>
+<p class="mt-3 leading-relaxed text-slate-700">The grid also teaches proportion. Very large numbers in yen or won and very small numbers in pounds or Swiss francs can look alarming until you realise they describe the same value. Seeing all of them side by side, derived from one consistent set of rates, builds an intuition that single conversions never give you. Over time you start to recognise rough equivalents automatically, which makes you faster at spotting a price that looks wrong, a quote that seems too generous, or a simple typing error with an extra zero. That quiet sense-checking is one of the most practical financial skills a traveller or remote worker can develop.</p>
+<h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-8">Quick chips, swap and copy: small details, real speed</h2>
+<p class="mt-3 leading-relaxed text-slate-700">Good tools respect your time. The quick amount chips on GlobeRate let you test common amounts such as ten, fifty, one hundred, five hundred or one thousand with a single tap, which is perfect for checking typical prices like a meal, a train ticket, a hotel night or a monthly subscription. The swap button reverses your two currencies instantly, because the return question is almost always the next question: if this is what my money becomes over there, what does their price become in my money? And the copy button places a clean, readable result on your clipboard, ready to paste into a message, a spreadsheet, a quote or a travel plan without retyping digits and risking a transcription mistake.</p>
+<p class="mt-3 leading-relaxed text-slate-700">These details sound small until you are the person doing twenty conversions while planning an itinerary or preparing invoices at the end of a month. Every retyped number is a chance to drop a digit. Every manual reversal is a chance to divide when you should have multiplied. Automating the boring parts is not laziness; it is error prevention. GlobeRate keeps the whole workflow on one screen, with no signup, no paywall and nothing to install, so the path from question to reliable answer stays as short as possible on both a desktop monitor and a phone held in one hand at an airport.</p>
+<h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-8">Using GlobeRate for travel, work and everyday decisions</h2>
+<p class="mt-3 leading-relaxed text-slate-700">For travel, start by converting your total budget, then break it into daily amounts and test them against the grid. A daily figure that looks generous in one destination may be tight in another, and seeing accommodation, food and transport prices in your home currency early helps you choose destinations and dates realistically. For remote work and freelancing, convert your rate both ways before you quote. Knowing what your fee feels like in a client country helps you price fairly, explain your quote confidently and avoid undercharging simply because a large foreign number looked impressive. For shopping, convert the full delivered price including shipping and likely taxes, not just the headline item price, because the extras are also paid in that currency.</p>
+<p class="mt-3 leading-relaxed text-slate-700">Students and families sending money internationally can use the editable rates to compare providers honestly. Take the exact amount each service promises to deliver, work backwards to the effective rate it implies, and enter that rate here to compare like with like. Businesses can use the grid for quick catalogue checks before formal accounting takes over with official rates for a specific date. In every case the pattern is the same: get a fast estimate, adjust the rate to match the real quote in front of you, and only then decide. GlobeRate is deliberately an indicative planning tool rather than a trading terminal, and using it within that honest boundary makes it genuinely dependable.</p>
+<h2 class="text-2xl font-extrabold text-[#0B1F4A] mt-8">Common mistakes to avoid when converting currency</h2>
+<p class="mt-3 leading-relaxed text-slate-700">The most frequent mistake is treating a converted amount as a guaranteed amount. Rates move and providers add costs, so always leave a small buffer in budgets that truly matter. The second mistake is mixing up direction: multiplying when the conversion requires division, which is why using a tested converter beats mental arithmetic for anything important. The third is ignoring formatting. A price written with a comma as a decimal separator in one country would use a point in another, and misreading that difference changes a price by a factor of a hundred. The fourth is forgetting cash reality: small notes, coins and the rate at a specific desk can differ from card rates, so a single perfect number rarely survives contact with a real trip unchanged.</p>
+<p class="mt-3 leading-relaxed text-slate-700">Finally, remember that a conversion is only as good as the rate behind it. Check when a rate was set, whose rate it is, and whether fees sit on top of it. GlobeRate helps by making its rates visible and editable instead of hiding them behind a single unexplained answer. When you understand the rate, you understand the result, and when you understand the result, you can make calmer, better decisions about spending, saving, quoting and travelling. Bookmark this page for the next time a price appears in an unfamiliar currency, start with the indicative answer, refine it with any real quote you receive, and move forward with a number you can explain.</p>
+</article>
+<section class="mt-8"><h2 class="text-2xl font-black text-[#0B1F4A]">Frequently asked questions</h2><div class="mt-4 grid md:grid-cols-2 gap-4"><div class="faq-item border border-slate-200 rounded-xl p-5 bg-white"><h3 class="font-bold text-[#0B1F4A]">Is GlobeRate free to use?</h3><p class="mt-2 text-slate-600 leading-relaxed">Yes. GlobeRate is completely free with unlimited usage. There is no signup, no paywall and no watermark on any result. Open the page, type an amount and convert as many times as you like.</p></div>
+<div class="faq-item border border-slate-200 rounded-xl p-5 bg-white"><h3 class="font-bold text-[#0B1F4A]">Are the exchange rates in GlobeRate live rates?</h3><p class="mt-2 text-slate-600 leading-relaxed">No. GlobeRate uses built-in indicative rates so the tool works fully offline. Those rates are a helpful starting point for estimates, travel budgets and quick comparisons, but they are not live market rates. Always check a live source or your bank before making a payment, booking or financial decision.</p></div>
+<div class="faq-item border border-slate-200 rounded-xl p-5 bg-white"><h3 class="font-bold text-[#0B1F4A]">Can I edit the exchange rates?</h3><p class="mt-2 text-slate-600 leading-relaxed">Yes. Open the rates editor below the converter, change any rate per one US dollar, and every conversion updates instantly. This is useful when your bank, card network or money transfer service quotes you a specific rate and you want to see the real cost with that rate included.</p></div>
+<div class="faq-item border border-slate-200 rounded-xl p-5 bg-white"><h3 class="font-bold text-[#0B1F4A]">How does the multi-currency grid work?</h3><p class="mt-2 text-slate-600 leading-relaxed">The grid converts your amount into fifteen major currencies at once using the same rates. It is ideal for comparing a price across countries, planning a multi-country trip or checking what a salary, invoice or product price looks like in several markets without converting one by one.</p></div>
+<div class="faq-item border border-slate-200 rounded-xl p-5 bg-white"><h3 class="font-bold text-[#0B1F4A]">Why do yen and won show no decimal places?</h3><p class="mt-2 text-slate-600 leading-relaxed">Japanese yen and South Korean won are traditionally used without minor units in everyday prices, so GlobeRate formats them with zero decimal places. Most other currencies in the tool are formatted with two decimal places, matching how they are normally quoted.</p></div>
+<div class="faq-item border border-slate-200 rounded-xl p-5 bg-white"><h3 class="font-bold text-[#0B1F4A]">Does GlobeRate store or send my data anywhere?</h3><p class="mt-2 text-slate-600 leading-relaxed">No. All calculations happen in your browser on this page. GlobeRate makes no backend calls and does not send your amounts or edited rates to any server. If you close or refresh the page, your edited rates return to the built-in defaults.</p></div></div></section>
+</main>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+<footer class="bg-[#0B1F4A] text-slate-300 text-center text-sm py-6 px-4">GlobeRate — fast, honest currency estimates for travel, work and everyday decisions.</footer>
+<script id="lib-globerate">var GlobeRateLib = (function () {
+  'use strict';
+  var CURRENCIES = [
+    { code: 'USD', name: 'US Dollar', symbol: '$', decimals: 2 },
+    { code: 'EUR', name: 'Euro', symbol: '€', decimals: 2 },
+    { code: 'GBP', name: 'British Pound', symbol: '£', decimals: 2 },
+    { code: 'INR', name: 'Indian Rupee', symbol: '₹', decimals: 2 },
+    { code: 'JPY', name: 'Japanese Yen', symbol: '¥', decimals: 0 },
+    { code: 'AUD', name: 'Australian Dollar', symbol: 'A$', decimals: 2 },
+    { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', decimals: 2 },
+    { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF ', decimals: 2 },
+    { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', decimals: 2 },
+    { code: 'AED', name: 'UAE Dirham', symbol: 'د.إ ', decimals: 2 },
+    { code: 'SGD', name: 'Singapore Dollar', symbol: 'S$', decimals: 2 },
+    { code: 'NZD', name: 'New Zealand Dollar', symbol: 'NZ$', decimals: 2 },
+    { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', decimals: 2 },
+    { code: 'ZAR', name: 'South African Rand', symbol: 'R', decimals: 2 },
+    { code: 'KRW', name: 'South Korean Won', symbol: '₩', decimals: 0 }
+  ];
+  var DEFAULT_RATES = { USD: 1, EUR: 0.92, GBP: 0.79, INR: 83.25, JPY: 149.8, AUD: 1.52, CAD: 1.36, CHF: 0.88, CNY: 7.24, AED: 3.6725, SGD: 1.34, NZD: 1.64, BRL: 5.05, ZAR: 18.15, KRW: 1345 };
+  function decimalsFor(code) {
+    for (var i = 0; i < CURRENCIES.length; i++) if (CURRENCIES[i].code === code) return CURRENCIES[i].decimals;
+    return 2;
+  }
+  function parseAmount(raw) {
+    if (raw === null || raw === undefined) return NaN;
+    var s = String(raw).trim().replace(/,/g, '').replace(/\s+/g, '');
+    if (s === '' || s === '.' || s === '-') return NaN;
+    var n = Number(s);
+    return isFinite(n) ? n : NaN;
+  }
+  function isValidAmount(n) { return typeof n === 'number' && isFinite(n) && n >= 0; }
+  function sanitizeRates(input) {
+    var out = {};
+    var src = input || {};
+    Object.keys(DEFAULT_RATES).forEach(function (code) {
+      var v = Number(src[code]);
+      out[code] = (isFinite(v) && v > 0) ? v : DEFAULT_RATES[code];
+    });
+    return out;
+  }
+  function crossRate(from, to, rates) {
+    var r = sanitizeRates(rates);
+    if (!r[from] || !r[to]) return NaN;
+    return r[to] / r[from];
+  }
+  function convert(amount, from, to, rates) {
+    var n = typeof amount === 'number' ? amount : parseAmount(amount);
+    if (!isValidAmount(n)) return NaN;
+    var rate = crossRate(from, to, rates);
+    if (!isFinite(rate)) return NaN;
+    return n * rate;
+  }
+  function convertAll(amount, from, rates) {
+    var n = typeof amount === 'number' ? amount : parseAmount(amount);
+    var r = sanitizeRates(rates);
+    var out = [];
+    CURRENCIES.forEach(function (c) {
+      out.push({ code: c.code, name: c.name, symbol: c.symbol, decimals: c.decimals, value: isValidAmount(n) ? (n / r[from]) * r[c.code] : NaN, rate: r[c.code] / r[from] });
+    });
+    return out;
+  }
+  function formatValue(value, code) {
+    if (!isFinite(value)) return '—';
+    var d = decimalsFor(code);
+    return Number(value).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function formatConversion(amount, from, to, rates) {
+    var v = convert(amount, from, to, rates);
+    if (!isFinite(v)) return '';
+    return formatValue(amount, from) + ' ' + from + ' = ' + formatValue(v, to) + ' ' + to;
+  }
+  function swapPair(from, to) { return { from: to, to: from }; }
+  return { CURRENCIES: CURRENCIES, DEFAULT_RATES: DEFAULT_RATES, decimalsFor: decimalsFor, parseAmount: parseAmount, isValidAmount: isValidAmount, sanitizeRates: sanitizeRates, crossRate: crossRate, convert: convert, convertAll: convertAll, formatValue: formatValue, formatConversion: formatConversion, swapPair: swapPair };
+})();
+if (typeof module !== 'undefined' && module.exports) { module.exports = GlobeRateLib; }
+</script>
+<script>
+(function(){
+var L=GlobeRateLib; var rates=Object.assign({},L.DEFAULT_RATES);
+var amountEl=document.getElementById('amount'),fromEl=document.getElementById('fromSel'),toEl=document.getElementById('toSel'),resEl=document.getElementById('result'),rateEl=document.getElementById('rateLine'),msgEl=document.getElementById('msg'),gridEl=document.getElementById('grid'),ratesEl=document.getElementById('ratesGrid');
+L.CURRENCIES.forEach(function(c){var o1=document.createElement('option');o1.value=c.code;o1.textContent=c.code+' — '+c.name;fromEl.appendChild(o1);var o2=document.createElement('option');o2.value=c.code;o2.textContent=c.code+' — '+c.name;toEl.appendChild(o2);});
+fromEl.value='USD';toEl.value='INR';
+function buildRates(){ratesEl.innerHTML='';L.CURRENCIES.forEach(function(c){var d=document.createElement('div');d.className='bg-slate-50 border border-slate-200 rounded-xl p-3';d.innerHTML='<label class="text-xs font-black text-[#0B1F4A]">'+c.code+' <span class="font-semibold text-slate-400">'+c.name+'</span></label>';var inp=document.createElement('input');inp.type='number';inp.step='any';inp.min='0';inp.value=rates[c.code];inp.dataset.code=c.code;inp.className='mt-1.5 w-full rounded-lg border border-slate-300 px-2 py-1.5 font-bold text-[#0B1F4A]';inp.disabled=(c.code==='USD');inp.addEventListener('input',function(){var v=Number(inp.value);if(isFinite(v)&&v>0){rates[c.code]=v;}else{rates=L.sanitizeRates(rates);}render();});d.appendChild(inp);ratesEl.appendChild(d);});}
+function render(){var amt=L.parseAmount(amountEl.value);if(!L.isValidAmount(amt)){msgEl.textContent= amountEl.value.trim()===''?'Enter an amount to see conversions.':'Please enter a valid non-negative amount — numbers only.';resEl.textContent='—';rateEl.textContent='';gridEl.innerHTML='<p class="col-span-full text-slate-500 text-sm bg-white border border-dashed border-slate-300 rounded-xl p-4">No results yet — enter a valid amount above.</p>';return;}msgEl.textContent='';var v=L.convert(amt,fromEl.value,toEl.value,rates);resEl.textContent=L.formatValue(v,toEl.value)+' '+toEl.value;rateEl.textContent='1 '+fromEl.value+' = '+L.formatValue(L.crossRate(fromEl.value,toEl.value,rates),toEl.value)+' '+toEl.value;var all=L.convertAll(amt,fromEl.value,rates);gridEl.innerHTML=all.map(function(r){return '<div class="bg-white border '+(r.code===toEl.value?'border-amber-400 ring-2 ring-amber-300':'border-slate-200')+' rounded-2xl p-4"><p class="text-xs font-black text-slate-400">'+r.code+'</p><p class="mt-1 font-black text-[#0B1F4A] break-words">'+r.symbol+L.formatValue(r.value,r.code)+'</p><p class="text-xs text-slate-500 mt-1">'+r.name+'</p></div>';}).join('');}
+amountEl.addEventListener('input',render);fromEl.addEventListener('change',render);toEl.addEventListener('change',render);
+document.getElementById('chips').addEventListener('click',function(e){var b=e.target.closest('[data-chip]');if(!b)return;amountEl.value=b.dataset.chip;document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('active')});b.classList.add('active');render();});
+document.getElementById('swapBtn').addEventListener('click',function(){var s=L.swapPair(fromEl.value,toEl.value);fromEl.value=s.from;toEl.value=s.to;render();});
+document.getElementById('resetRates').addEventListener('click',function(){rates=Object.assign({},L.DEFAULT_RATES);buildRates();render();});
+document.getElementById('copyBtn').addEventListener('click',function(){var amt=L.parseAmount(amountEl.value);var txt=L.formatConversion(amt,fromEl.value,toEl.value,rates);var m=document.getElementById('copyMsg');if(!txt){m.textContent='Nothing to copy yet.';return;}function done(){m.textContent='Copied!';setTimeout(function(){m.textContent=''},2000);}function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){m.textContent='Copy failed.';}document.body.removeChild(ta);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(fallback);}else{fallback();}});
+buildRates();render();
+})();
+</script>
+</body></html>
